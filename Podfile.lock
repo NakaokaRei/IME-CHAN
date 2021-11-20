@@ -85,10 +85,12 @@ PODS:
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.12)
   - Protobuf (3.19.1)
+  - SwiftyTesseract (2.2.3)
 
 DEPENDENCIES:
   - Firebase/MLVision (= 6.25.0)
   - Firebase/MLVisionTextModel (= 6.25.0)
+  - SwiftyTesseract (~> 2.0)
 
 SPEC REPOS:
   trunk:
@@ -109,6 +111,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - SwiftyTesseract
 
 SPEC CHECKSUMS:
   Firebase: 5719b4f965f76643241a1bb8244483ff6117db39
@@ -128,7 +131,8 @@ SPEC CHECKSUMS:
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 3724efa50cb2846d7ccebc8691c574e85fd74471
+  SwiftyTesseract: d92b644e0e12d143bc272bfe1edb73ae07f2b2e8
 
-PODFILE CHECKSUM: e81a1a0636ad2a835ca4e63cca721a59c737eb84
+PODFILE CHECKSUM: 556c13fb287699433437e080741345a5a1be4392
 
 COCOAPODS: 1.10.1

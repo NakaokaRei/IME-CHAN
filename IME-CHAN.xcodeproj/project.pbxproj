@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		59129B702748EE48002B57DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59129B6F2748EE48002B57DA /* GoogleService-Info.plist */; };
 		59129B742748F1D4002B57DA /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59129B732748F1D4002B57DA /* VideoCapture.swift */; };
+		59129B772748F3D4002B57DA /* IMEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59129B762748F3D4002B57DA /* IMEViewModel.swift */; };
 		59EA1C562748E54200902C83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA1C552748E54200902C83 /* AppDelegate.swift */; };
 		59EA1C582748E54200902C83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA1C572748E54200902C83 /* SceneDelegate.swift */; };
 		59EA1C5A2748E54200902C83 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA1C592748E54200902C83 /* ContentView.swift */; };
 		59EA1C5C2748E54300902C83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59EA1C5B2748E54300902C83 /* Assets.xcassets */; };
 		59EA1C5F2748E54300902C83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59EA1C5E2748E54300902C83 /* Preview Assets.xcassets */; };
 		59EA1C622748E54300902C83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59EA1C602748E54300902C83 /* LaunchScreen.storyboard */; };
+		59EE6791274918AF00DF2DE0 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 59EE6790274918AF00DF2DE0 /* tessdata */; };
 		9182A88DF4026E7D04D5AAFB /* Pods_IME_CHAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A411586EE39F5A4E6F92A8 /* Pods_IME_CHAN.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,7 @@
 		39A411586EE39F5A4E6F92A8 /* Pods_IME_CHAN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IME_CHAN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59129B6F2748EE48002B57DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		59129B732748F1D4002B57DA /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		59129B762748F3D4002B57DA /* IMEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMEViewModel.swift; sourceTree = "<group>"; };
 		59EA1C522748E54200902C83 /* IME-CHAN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IME-CHAN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EA1C552748E54200902C83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59EA1C572748E54200902C83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,6 +34,7 @@
 		59EA1C5E2748E54300902C83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		59EA1C612748E54300902C83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59EA1C632748E54300902C83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59EE6790274918AF00DF2DE0 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		885861E67C97C07CA50A3743 /* Pods-IME-CHAN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IME-CHAN.release.xcconfig"; path = "Target Support Files/Pods-IME-CHAN/Pods-IME-CHAN.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +74,14 @@
 			path = Function;
 			sourceTree = "<group>";
 		};
+		59129B752748F325002B57DA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				59129B762748F3D4002B57DA /* IMEViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		59EA1C492748E54200902C83 = {
 			isa = PBXGroup;
 			children = (
@@ -91,8 +103,10 @@
 		59EA1C542748E54200902C83 /* IME-CHAN */ = {
 			isa = PBXGroup;
 			children = (
+				59EE6790274918AF00DF2DE0 /* tessdata */,
 				59129B722748F17A002B57DA /* Function */,
 				59129B712748F170002B57DA /* View */,
+				59129B752748F325002B57DA /* ViewModel */,
 				59EA1C552748E54200902C83 /* AppDelegate.swift */,
 				59EA1C572748E54200902C83 /* SceneDelegate.swift */,
 				59EA1C5B2748E54300902C83 /* Assets.xcassets */,
@@ -183,6 +197,7 @@
 			files = (
 				59EA1C622748E54300902C83 /* LaunchScreen.storyboard in Resources */,
 				59129B702748EE48002B57DA /* GoogleService-Info.plist in Resources */,
+				59EE6791274918AF00DF2DE0 /* tessdata in Resources */,
 				59EA1C5F2748E54300902C83 /* Preview Assets.xcassets in Resources */,
 				59EA1C5C2748E54300902C83 /* Assets.xcassets in Resources */,
 			);
@@ -254,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59129B772748F3D4002B57DA /* IMEViewModel.swift in Sources */,
 				59129B742748F1D4002B57DA /* VideoCapture.swift in Sources */,
 				59EA1C562748E54200902C83 /* AppDelegate.swift in Sources */,
 				59EA1C582748E54200902C83 /* SceneDelegate.swift in Sources */,

@@ -1,4 +1,4 @@
-# Uncomment the next line to define a global platform for your project
+#Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
 target 'IME-CHAN' do
@@ -9,5 +9,6 @@ target 'IME-CHAN' do
   pod 'Firebase/MLVision', '6.25.0'
   # If using an on-device API:
   pod 'Firebase/MLVisionTextModel', '6.25.0'
+  pod 'SwiftyTesseract', '~> 2.0'
 
 end
