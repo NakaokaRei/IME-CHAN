@@ -43,14 +43,16 @@ class IMEViewModel: ObservableObject {
         textRecognizer.process(image) { result, error in
             guard error == nil, let result = result else { return }
             let resultText = result.text
-            print(resultText)
+            
             self.recognizedText = self.cleanRecognizedText(recognizedText: resultText)
         }
     }
     
     func cleanRecognizedText(recognizedText: String) -> String{
-        let cleanText: String = recognizedText.trimmingCharacters(in: .newlines)
-        return cleanText
+//        let cleanText: String = recognizedText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let removeWhitesSpacesString = recognizedText.removeWhitespacesAndNewlines
+        print(removeWhitesSpacesString)
+        return removeWhitesSpacesString
     }
 
     func runVideo() {
@@ -94,4 +96,10 @@ extension IMEViewModel {
         }
         return nil
     }
+}
+
+extension StringProtocol where Self: RangeReplaceableCollection {
+  var removeWhitespacesAndNewlines: Self {
+    filter { !$0.isNewline && !$0.isWhitespace }
+  }
 }
