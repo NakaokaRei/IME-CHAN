@@ -15,8 +15,8 @@ class IMEViewModel: ObservableObject {
     let vision: Vision
     let textRecognizer: VisionTextRecognizer
     @Published var buffImage: UIImage? = nil
-    @Published var recognizedText: String = "明日の"
-    @Published var expectWord: [String] = ["あああ","いいい","ううう","えええ"]
+    @Published var recognizedText: String = ""
+    @Published var expectWord: [String] = ["","","",""]
 
     init() {
         FirebaseApp.configure()
@@ -44,8 +44,8 @@ class IMEViewModel: ObservableObject {
         textRecognizer.process(image) { result, error in
             guard error == nil, let result = result else { return }
             let resultText = result.text
-            
             self.recognizedText = self.cleanRecognizedText(recognizedText: resultText)
+            self.request()
         }
     }
     
@@ -72,15 +72,16 @@ class IMEViewModel: ObservableObject {
     }
 
     func request() {
-        let url = "https://app.ikoma.burasampo.jp/api/naist/"
+        let url = "https://1ccc-180-39-77-67.ngrok.io"
         // let headers: HTTPHeaders = ["Contenttype": "application/json"]
         let parameters:[String: String] = [
-            "value": "私の名前は"
+            "value": recognizedText
         ]
-        AF.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+        AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
             guard let data = response.data else { return }
             let response: ResponseModel = try! JSONDecoder().decode(ResponseModel.self, from: data)
-            let expectedText = response.result // ここに推論の文字のリストが入ってる
+            self.expectWord = response.result
+            print(self.expectWord)
         }
     }
 }
