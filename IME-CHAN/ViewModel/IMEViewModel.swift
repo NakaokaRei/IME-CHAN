@@ -14,6 +14,8 @@ class IMEViewModel: ObservableObject {
     let vision: Vision
     let textRecognizer: VisionTextRecognizer
     @Published var buffImage: UIImage? = nil
+    @Published var recognizedText: String = ""
+    @Published var expectWord: [String] = ["","","",""]
 
     init() {
         FirebaseApp.configure()
@@ -41,7 +43,13 @@ class IMEViewModel: ObservableObject {
             guard error == nil, let result = result else { return }
             let resultText = result.text
             print(resultText)
+            self.recognizedText = self.cleanRecognizedText(recognizedText: resultText)
         }
+    }
+    
+    func cleanRecognizedText(recognizedText: String) -> String{
+        let cleanText: String = recognizedText.trimmingCharacters(in: .newlines)
+        return cleanText
     }
 
     func runVideo() {
