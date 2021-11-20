@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Firebase
+import Alamofire
 
 class IMEViewModel: ObservableObject {
     let videoCapture = VideoCapture()
@@ -57,6 +58,19 @@ class IMEViewModel: ObservableObject {
 
     func stopVideo() {
         videoCapture.stop()
+    }
+
+    func request() {
+        let url = "https://app.ikoma.burasampo.jp/api/naist/"
+        // let headers: HTTPHeaders = ["Contenttype": "application/json"]
+        let parameters:[String: String] = [
+            "value": "私の名前は"
+        ]
+        AF.request(url, method: .get, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            guard let data = response.data else { return }
+            let response: ResponseModel = try! JSONDecoder().decode(ResponseModel.self, from: data)
+            let expectedText = response.result // ここに推論の文字のリストが入ってる
+        }
     }
 }
 
