@@ -7,8 +7,6 @@ target 'IME-CHAN' do
 
   # Pods for IME-CHAN
   pod 'Firebase/MLVision', '6.25.0'
-  # If using an on-device API:
-  pod 'Firebase/MLVisionTextModel', '6.25.0'
-  pod 'SwiftyTesseract', '~> 2.0'
+  pod 'Alamofire'
 
 end
