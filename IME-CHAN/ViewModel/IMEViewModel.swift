@@ -15,7 +15,6 @@ class IMEViewModel: ObservableObject {
     let vision: Vision
     let textRecognizer: VisionTextRecognizer
     @Published var buffImage: UIImage? = nil
-    @Published var showInfo: Bool = false
     @Published var recognizedText: String = "明日の"
     @Published var expectWord: [String] = ["あああ","いいい","ううう","えええ"]
 
@@ -25,11 +24,12 @@ class IMEViewModel: ObservableObject {
         let options = VisionCloudTextRecognizerOptions()
         options.languageHints = ["ja"]
         textRecognizer = vision.cloudTextRecognizer(options: options)
+        runVideo()
     }
 
     func startRecognize() {
         let queue = DispatchQueue(label: "naist.yapparifujisan.IME-CHAN")
-        for i in 0..<99 {
+        for i in 0..<2000 {
             queue.async { [self] in
                 sleep(3)
                 let log = "\(queue.label): \(i)"
@@ -60,7 +60,6 @@ class IMEViewModel: ObservableObject {
         videoCapture.run { sampleBuffer in
             if let convertImage = self.UIImageFromSampleBuffer(sampleBuffer) {
                 DispatchQueue.main.async {
-                    self.showInfo = true
                     self.buffImage = convertImage
                 }
             }
@@ -69,7 +68,6 @@ class IMEViewModel: ObservableObject {
     }
 
     func stopVideo() {
-        self.showInfo = false
         videoCapture.stop()
     }
 
