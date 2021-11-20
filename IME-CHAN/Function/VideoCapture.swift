@@ -36,7 +36,7 @@ class VideoCapture: NSObject {
         // アウトプットの画像を縦向きに変更（標準は横）
         for connection in videoDataOutput.connections {
             if connection.isVideoOrientationSupported {
-                connection.videoOrientation = .portrait
+                connection.videoOrientation = .landscapeLeft
             }
         }
         captureSession.commitConfiguration()
