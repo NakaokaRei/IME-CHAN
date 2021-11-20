@@ -15,8 +15,9 @@ class IMEViewModel: ObservableObject {
     let vision: Vision
     let textRecognizer: VisionTextRecognizer
     @Published var buffImage: UIImage? = nil
-    @Published var recognizedText: String = ""
-    @Published var expectWord: [String] = ["","","",""]
+    @Published var showInfo: Bool = false
+    @Published var recognizedText: String = "明日の"
+    @Published var expectWord: [String] = ["あああ","いいい","ううう","えええ"]
 
     init() {
         FirebaseApp.configure()
@@ -59,6 +60,7 @@ class IMEViewModel: ObservableObject {
         videoCapture.run { sampleBuffer in
             if let convertImage = self.UIImageFromSampleBuffer(sampleBuffer) {
                 DispatchQueue.main.async {
+                    self.showInfo = true
                     self.buffImage = convertImage
                 }
             }
@@ -67,6 +69,7 @@ class IMEViewModel: ObservableObject {
     }
 
     func stopVideo() {
+        self.showInfo = false
         videoCapture.stop()
     }
 
