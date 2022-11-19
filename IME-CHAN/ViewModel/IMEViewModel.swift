@@ -72,8 +72,8 @@ class IMEViewModel: ObservableObject {
     }
 
     func request() {
-        let url = "https://9d83-180-39-77-67.ngrok.io/"
-        // let headers: HTTPHeaders = ["Contenttype": "application/json"]
+        let url = "http://172.20.10.5:5000"
+//        let headers: HTTPHeaders = ["Contenttype": "application/json"]
         let parameters:[String: String] = [
             "value": recognizedText
         ]
