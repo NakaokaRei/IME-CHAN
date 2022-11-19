@@ -7,24 +7,37 @@
 
 import Foundation
 import Combine
-import Firebase
+import Vision
 import Alamofire
 
 class IMEViewModel: ObservableObject {
     let videoCapture = VideoCapture()
-    let vision: Vision
-    let textRecognizer: VisionTextRecognizer
     @Published var buffImage: UIImage? = nil
     @Published var recognizedText: String = ""
     @Published var expectWord: [String] = ["","","",""]
 
+    var buffImg: CMSampleBuffer?
+
     init() {
-        FirebaseApp.configure()
-        vision = Vision.vision()
-        let options = VisionCloudTextRecognizerOptions()
-        options.languageHints = ["ja"]
-        textRecognizer = vision.cloudTextRecognizer(options: options)
         runVideo()
+    }
+
+    func recognizeText(sampleBuffer: CMSampleBuffer) {
+        let request = VNRecognizeTextRequest { (request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+            let maximumCandidates = 1
+            self.recognizedText = ""
+            for observation in observations {
+                guard let candidate = observation.topCandidates(maximumCandidates).first else { continue }
+                self.recognizedText += candidate.string
+            }
+            print(self.recognizedText)
+            self.request()
+        }
+        request.recognitionLanguages = ["ja-JP"]
+
+        let handler = VNImageRequestHandler(cmSampleBuffer: sampleBuffer)
+        try? handler.perform([request])
     }
 
     func startRecognize() {
@@ -34,18 +47,8 @@ class IMEViewModel: ObservableObject {
                 sleep(3)
                 let log = "\(queue.label): \(i)"
                 print(log)
-                recognizeText(uiImage: self.buffImage!)
+                recognizeText(sampleBuffer: self.buffImg!)
             }
-        }
-    }
-
-    func recognizeText(uiImage: UIImage) {
-        let image = VisionImage(image: uiImage)
-        textRecognizer.process(image) { result, error in
-            guard error == nil, let result = result else { return }
-            let resultText = result.text
-            self.recognizedText = self.cleanRecognizedText(recognizedText: resultText)
-            self.request()
         }
     }
     
@@ -88,6 +91,7 @@ class IMEViewModel: ObservableObject {
 
 extension IMEViewModel {
     func UIImageFromSampleBuffer(_ sampleBuffer: CMSampleBuffer) -> UIImage? {
+        buffImg = sampleBuffer
         if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
             let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
             let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
