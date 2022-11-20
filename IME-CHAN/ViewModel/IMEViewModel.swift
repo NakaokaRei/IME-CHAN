@@ -79,9 +79,13 @@ class IMEViewModel: ObservableObject {
         ]
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
             guard let data = response.data else { return }
-            let response: ResponseModel = try! JSONDecoder().decode(ResponseModel.self, from: data)
-            self.expectWord = response.result
-            print(self.expectWord)
+            do {
+                let response: ResponseModel = try JSONDecoder().decode(ResponseModel.self, from: data)
+                self.expectWord = response.result
+                print(self.expectWord)
+            } catch {
+                print(error)
+            }
         }
     }
 }
